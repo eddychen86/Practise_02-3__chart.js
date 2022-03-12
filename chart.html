@@ -12,72 +12,110 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <style>
+      #title {
+        letter-spacing: 5px;
+      }
+      #chartTable {
+        border-radius: 10px;
+        border: 1px solid #eee;
+      }
+      select {
+        font-size: 12px;
+      }
+      .searchBtn {
+        border-radius: 100px !important;
+        /* padding: 8px; */
+      }
+    </style>
+
   </head>
   <body>
     <div class="title text-center py-3 bg-primary bg-gradient text-white">
       <div class="container">
-        <h1><b>臺鐵局每日各站之進出站人數</b></h1>
+        <h1 id="title" class="fw-bolder">臺鐵局每日各站之進出站人數</h1>
       </div>
     </div>
-      <div class="row d-flex justify-content-center">
-        <div class="col-5 p-2 m-2 shadow p-3 bg-body rounded">
-          <div id="title" class="m-1">
-            <h6 class="d-flex flex-row text-center align-items-center justify-content-center">
-              <select id="staName" class="mx-1 px-1 border border-info rounded-3">
-                <option value="" selected>選擇</option>
-              </select> 車站
-              <select id="staDateS" class="mx-1 px-1 border border-info rounded-3">
-                <option value="" selected>選擇</option>
-              </select> ~
-              <select id="staDateE" class="mx-1 px-1 border border-info rounded-3">
-                <option value="" selected>選擇</option>
-              </select> 進站人數
-              <i class="btn btn-primary ms-2 fa-solid fa-magnifying-glass border rounded-pill" onclick="getInfo(this)"></i>
-            </h6>
-            <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 (技術極限) ※</p>
-          </div>
-          <div><canvas id="stiNB"></canvas></div>
-        </div>
-
-        <!-- <div class="col-5 p-2 m-2 shadow p-3 bg-body rounded">
-          <h5 class="d-flex flex-row text-center align-items-center justify-content-center">
-            <select id="staName" class="m-1 ps-1 border border-info rounded-3">
+    <div class="row d-flex justify-content-center">
+      <div id="chartTable" class="col-5 p-2 m-2 shadow p-3 bg-body">
+        <div id="subtitle" class="m-1 text-center">
+          <h3 class="fw-bolder">各車站進出人數</h3>
+          <div class="d-flex flex-row align-items-center justify-content-center">
+            <select id="staName1" class="mx-1 p-1 border border-info rounded-3">
               <option value="" selected>選擇</option>
             </select> 車站
-            <select id="staDateS" class="m-1 ps-1 border border-info rounded-3">
+            <select id="staDateS1" class="mx-1 p-1 border border-info rounded-3">
               <option value="" selected>選擇</option>
             </select> ~
-            <select id="staDateE" class="m-1 ps-1 border border-info rounded-3">
+            <select id="staDateE1" class="mx-1 p-1 border border-info rounded-3">
               <option value="" selected>選擇</option>
-            </select> 出站人數
-          </h5>
-          <div><canvas id="cityNB"></canvas></div>  
+            </select>
+            <i class="searchBtn btn btn-primary p-2 ms-2 fa-solid fa-magnifying-glass" onclick="getInfo1(this)"></i>
+          </div>
+          <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
         </div>
+        <div><canvas id="stiNB"></canvas></div>
+      </div>
 
-        <div class="col-5 p-2 m-2 shadow p-3 bg-body rounded">
-          <h5 class="d-flex flex-row text-center align-items-center justify-content-center">
-            <select class="mx-1" id="station">
+      <div id="chartTable" class="col-5 p-2 m-2 shadow p-3 bg-body">
+        <div id="subtitle" class="m-1 text-center">
+          <h3 class="fw-bolder">各車站進出人數加總比例</h3>
+          <div class="d-flex flex-row align-items-center justify-content-center">
+            <select id="staName2" class="m-1 p-1 border border-info rounded-3">
               <option value="" selected>選擇</option>
-            </select>車站
-            <select class="mx-1">
+            </select> 車站
+            <select id="staDateS2" class="m-1 p-1 border border-info rounded-3">
               <option value="" selected>選擇</option>
-            </select>月份 進站比例
-          </h5>
-          <div><canvas id="allCityAR"></canvas></div>
+            </select> ~
+            <select id="staDateE2" class="m-1 p-1 border border-info rounded-3">
+              <option value="" selected>選擇</option>
+            </select>
+            <i class="searchBtn btn btn-primary p-2 ms-2 fa-solid fa-magnifying-glass" onclick="getInfo2(this)"></i>
+          </div>
+          <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
         </div>
+        <div><canvas id="cityNB"></canvas></div>  
+      </div>
 
-        <div class="col-5 p-2 m-2 shadow p-3 bg-body rounded">
-          <h5 class="d-flex flex-row text-center align-items-center justify-content-center">
-            <select class="mx-1" id="station">
+      <div id="chartTable" class="col-5 p-2 m-2 shadow p-3 bg-body">
+        <div id="subtitle" class="m-1 text-center">
+          <h3 class="fw-border"></h3>
+          <div class="d-flex flex-row align-items-center justify-content-center">
+            <select id="staName3" class="m-1 p-1 border border-info rounded-3">
               <option value="" selected>選擇</option>
-            </select>車站
-            <select class="mx-1">
+            </select> 車站
+            <select id="staDateS3" class="m-1 p-1 border border-info rounded-3">
               <option value="" selected>選擇</option>
-            </select>月份 出站比例
-          </h5>
+            </select> ~
+            <select id="staDateE3" class="m-1 p-1 border border-info rounded-3">
+              <option value="" selected>選擇</option>
+            </select>
+            <i class="searchBtn btn btn-primary p-2 ms-2 fa-solid fa-magnifying-glass" onclick="getInfo13(this)"></i>
+          </div>
+          <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
+        </div>
+        <div><canvas id="allCityAR"></canvas></div>
+      </div>
 
-          <div><canvas id="allCityNB"></canvas></div>
-        </div> -->
+      <div id="chartTable" class="col-5 p-2 m-2 shadow p-3 bg-body">
+        <div id="subtitle" class="m-1 text-center">
+          <h3 class="fw-border"></h3>
+          <div class="d-flex flex-row align-items-center justify-content-center">
+            <select id="staName4" class="m-1 p-1 border border-info rounded-3">
+              <option value="" selected>選擇</option>
+            </select> 車站
+            <select id="staDateS4" class="m-1 p-1 border border-info rounded-3">
+              <option value="" selected>選擇</option>
+            </select> ~
+            <select id="staDateE4" class="m-1 p-1 border border-info rounded-3">
+              <option value="" selected>選擇</option>
+            </select>
+            <i class="searchBtn btn btn-primary p-2 ms-2 fa-solid fa-magnifying-glass" onclick="getInfo14(this)"></i>
+          </div>
+          <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
+        </div>
+        <div><canvas id="allCityNB"></canvas></div>
+      </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" referrerpolicy="no-referrer"></script>
