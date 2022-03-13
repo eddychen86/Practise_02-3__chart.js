@@ -138,7 +138,7 @@ function getInfo2() {
 					y1: item2["gateInComingCnt"],
 					y2: item2["gateOutGoingCnt"]
 				}
-				console.log(typeof(newItem2.x));
+				// console.log(typeof(newItem2.x));
 
 				// labelCount2.push()
 				
