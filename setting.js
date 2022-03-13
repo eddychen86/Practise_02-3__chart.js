@@ -138,18 +138,13 @@ function getInfo2() {
 					y1: item2["gateInComingCnt"],
 					y2: item2["gateOutGoingCnt"]
 				}
-				// console.log(typeof(newItem2.x));
-
-				// labelCount2.push()
-				
-				// while ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
-				// 	labelCount2.push("西部幹線")
-				// 	console.log(labelCount2);
-				// }
+				let sum = newItem2.y1 + newItem2.y2;
 
 				if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
+					
 					labelCount2.push("西部幹線-北")
 				} else if ( newItem2.x >= 2110 && newItem2.x <= 2260 ) {
+					data1Count2.push(sum.reduce((previousValue, currentValue) => previousValue + currentValue));
 					labelCount2.push("西部幹線-海")
 				} else if ( newItem2.x >= 3140 && newItem2.x <= 3350 ) {
 					labelCount2.push("西部幹線-山")
@@ -168,9 +163,12 @@ function getInfo2() {
 				}
 
 				// labelCount2.push(newItem2x);
-				data1Count2.push(newItem2.y1 + newItem2.y2);
+				// data1Count2.push(newItem2.y1 + newItem2.y2);
 			});
-			console.log(labelCount2);
+
+			const labelCount2_2 = [...new Set(labelCount2)];
+			
+			console.log(data1Count2, labelCount2_2);
 			
 			var ctx2 = document.getElementById("cityNB");
 
@@ -189,7 +187,7 @@ function getInfo2() {
 			}
 			
 			const data2 = {
-				labels: labelCount2,
+				labels: labelCount2_2,
 				datasets: [{
 					data: data1Count2,
 					backgroundColor: colors,
