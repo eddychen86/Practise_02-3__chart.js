@@ -138,7 +138,7 @@ function getInfo2() {
 					y1: item2["gateInComingCnt"],
 					y2: item2["gateOutGoingCnt"]
 				}
-				console.log(newItem2.x);
+				console.log(typeof(newItem2.x));
 
 				// labelCount2.push()
 				
@@ -147,23 +147,23 @@ function getInfo2() {
 				// 	console.log(labelCount2);
 				// }
 
-				if ( newItem2.x <= 900 && newItem2.x <= 1250 ) {
+				if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
 					labelCount2.push("西部幹線-北")
-				} else if ( newItem2.x <= 2110 && newItem2.x <= 2260 ) {
+				} else if ( newItem2.x >= 2110 && newItem2.x <= 2260 ) {
 					labelCount2.push("西部幹線-海")
-				} else if ( newItem2.x <= 3140 && newItem2.x <= 3350 ) {
+				} else if ( newItem2.x >= 3140 && newItem2.x <= 3350 ) {
 					labelCount2.push("西部幹線-山")
-				} else if ( newItem2.x <= 3360 && newItem2.x <= 4100 ) {
+				} else if ( newItem2.x >= 3360 && newItem2.x <= 4100 ) {
 					labelCount2.push("西部幹線-彰雲嘉")
-				} else if ( newItem2.x <= 4110 && newItem2.x <= 5110 ) {
+				} else if ( newItem2.x >= 4110 && newItem2.x <= 5110 ) {
 					labelCount2.push("西部幹線-台南高屏")
-				} else if ( newItem2.x <= 5120 && newItem2.x <= 5240 ) {
+				} else if ( newItem2.x >= 5120 && newItem2.x <= 5240 ) {
 					labelCount2.push("南迴線")
-				} else if ( newItem2.x <= 6000 && newItem2.x <= 6070 ) {
+				} else if ( newItem2.x >= 6000 && newItem2.x <= 6070 ) {
 					labelCount2.push("東部幹線-台東")
-				} else if ( newItem2.x <= 6080 && newItem2.x <= 7080 ) {
+				} else if ( newItem2.x >= 6080 && newItem2.x <= 7080 ) {
 					labelCount2.push("東部幹線-花蓮")
-				} else if ( newItem2.x <= 7090 && newItem2.x <= 7360 ) {
+				} else if ( newItem2.x >= 7090 && newItem2.x <= 7360 ) {
 					labelCount2.push("其他")
 				}
 
@@ -184,7 +184,7 @@ function getInfo2() {
 				return color;
 			}
 			let colors = [];
-			for (let i = 0; i < 3 ; i++){
+			for (let i = 0; i < data1Count2.length ; i++){
 				colors.push(getRandomColor());
 			}
 			
