@@ -22,10 +22,13 @@ axios
 			datas.map(function(data){
 				$("#staDateS1").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
 				$("#staDateE1").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
+
 				$("#staDateS2").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
 				$("#staDateE2").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
+
 				$("#staDateS3").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
 				$("#staDateE3").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
+
 				$("#staDateS4").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
 				$("#staDateE4").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
 			});
@@ -120,55 +123,85 @@ function getInfo1() {
 
 function getInfo2() {
 	return new Promise((resolve) => {
-		const sta2 = $("#staName2").val();
-		const dateS2 = $("#staDateS2").val();
-		const dateE2 = $("#staDateE2").val();
-		axios.get(`https://taiwan-railway.herokuapp.com/${sta2}/${dateS2}/${dateE2}`).then((response) => {
+		const date2 = $("#staDateE2").val();
+		axios.get(`https://taiwan-railway.herokuapp.com/date/${date2}`).then((response) => {
 			resolve(response.data);
 			let resp2 = response.data;
-			// console.log(resp);
+			// console.log(resp2);
 
 			let labelCount2 = [];
 			let data1Count2 = [];
-			let data2Count2 = [];
 
 			resp2.map((item2) => {
 				let newItem2 = { 
-					x: item2["trnOpDate"],
+					x: item2["staCode"],
 					y1: item2["gateInComingCnt"],
 					y2: item2["gateOutGoingCnt"]
 				}
-				console.log(newItem2["x"]);
+				console.log(newItem2.x);
 
-				labelCount2.push(newItem2.x);
+				// labelCount2.push()
+				
+				// while ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
+				// 	labelCount2.push("西部幹線")
+				// 	console.log(labelCount2);
+				// }
+
+				if ( newItem2.x <= 900 && newItem2.x <= 1250 ) {
+					labelCount2.push("西部幹線-北")
+				} else if ( newItem2.x <= 2110 && newItem2.x <= 2260 ) {
+					labelCount2.push("西部幹線-海")
+				} else if ( newItem2.x <= 3140 && newItem2.x <= 3350 ) {
+					labelCount2.push("西部幹線-山")
+				} else if ( newItem2.x <= 3360 && newItem2.x <= 4100 ) {
+					labelCount2.push("西部幹線-彰雲嘉")
+				} else if ( newItem2.x <= 4110 && newItem2.x <= 5110 ) {
+					labelCount2.push("西部幹線-台南高屏")
+				} else if ( newItem2.x <= 5120 && newItem2.x <= 5240 ) {
+					labelCount2.push("南迴線")
+				} else if ( newItem2.x <= 6000 && newItem2.x <= 6070 ) {
+					labelCount2.push("東部幹線-台東")
+				} else if ( newItem2.x <= 6080 && newItem2.x <= 7080 ) {
+					labelCount2.push("東部幹線-花蓮")
+				} else if ( newItem2.x <= 7090 && newItem2.x <= 7360 ) {
+					labelCount2.push("其他")
+				}
+
+				// labelCount2.push(newItem2x);
 				data1Count2.push(newItem2.y1 + newItem2.y2);
 			});
-			console.log(labelCount2, data1Count2, data2Count2);
+			console.log(labelCount2);
 			
 			var ctx2 = document.getElementById("cityNB");
 
 			// 問題：顏色會因耍的移入而改變
 			// 參考：https://stackoverflow.com/questions/25594478/different-color-for-each-bar-in-a-bar-chart-chartjs
 			function getRandomColor() {
-				var letters = '0123456789ABCDEF'.split('');
-				var color = '#';
-				for (var i = 0; i < 6; i++ )
+				let letters = '0123456789ABCDEF'.split('');
+				let color = '#';
+				for (let i = 0; i < 6; i++ )
 					color += letters[Math.floor(Math.random() * 16)];
 				return color;
+			}
+			let colors = [];
+			for (let i = 0; i < 3 ; i++){
+				colors.push(getRandomColor());
 			}
 			
 			const data2 = {
 				labels: labelCount2,
 				datasets: [{
-					// label: "進站人數",
 					data: data1Count2,
-					backgroundColor: getRandomColor,
+					backgroundColor: colors,
 					borderWidth: 1
-				}]
+				}],
 			}
 			const config2 = {
 				type: "doughnut",
-				data: data2
+				data: data2,
+				options: {
+					hover: {mode: null},
+				}
 			}
 			const cityNB = new Chart(ctx2, config2);		
 		});
