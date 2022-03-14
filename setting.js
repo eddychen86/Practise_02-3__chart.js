@@ -137,7 +137,6 @@ function getInfo2() {
 				let newItem2 = { 
 					x: item["staCode"]
 				}
-				// console.log(typeof(newItem2));
 
 				if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
 					labelCount2.push("西部幹線-北");
@@ -162,16 +161,15 @@ function getInfo2() {
 
 			resp2.map((item) => {
 				let newItem2 = {
-					x: item["staCode"],
 					y: item["gateInComingCnt"] + item["gateOutGoingCnt"]
 				}
+				// console.log(newItem2.y);
+				let total1, total2, total3, total4, total5, total6, total7, total8, total9 = 0;
 
-				function SumDatareduce(arr){
-					return arr.reduce((a,b)=>a+b);  
-				}
-
+				console.log(newItem2.y);
 				if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
-					console.log(SumDatareduce(newItem2.y));
+					// total1 = total1 + newItem2.y;
+					// data1Count2.push(total1);
 				} else if ( newItem2.x >= 2110 && newItem2.x <= 2260 ) {
 					
 				} else if ( newItem2.x >= 3140 && newItem2.x <= 3350 ) {
@@ -189,15 +187,9 @@ function getInfo2() {
 				} else if ( newItem2.x >= 7090 && newItem2.x <= 7360 ) {
 					
 				}
-
-				// function SumDatareduce(arr){
-				// 	return arr.reduce((a,b)=>a+b);  
-				// }
-
-				data1Count2.push(newItem2.y);
 			});
 			
-			console.log(data1Count2);
+			// console.log(data1Count2);
 
 			// function sumData2() {
 			// 	for(let i=0 ; i<data1Count2.length ; i++){
@@ -207,33 +199,9 @@ function getInfo2() {
 			// 	}
 			// }
 
-			// if ( data2Count2 >= 900 && data2Count2 <= 1250 ) {
-			// 	for(let i=0 ; i<data1Count2.length ; i++){
-			// 		let sum = 0 + data1Count2[i]
-			// 		console.log(sum);
-			// 		return sum;
-			// 	}
-			// } else if ( data2Count2 >= 2110 && data2Count2 <= 2260 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 3140 && data2Count2 <= 3350 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 3360 && data2Count2 <= 4100 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 4110 && data2Count2 <= 5110 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 5120 && data2Count2 <= 5240 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 6000 && data2Count2 <= 6070 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 6080 && data2Count2 <= 7080 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 7090 && data2Count2 <= 7360 ) {
-			// 	sumData2();
-			// }
-
 			const labelCount2_2 = [...new Set(labelCount2)];
 			
-			console.log(labelCount2_2);
+			// console.log(labelCount2_2);
 			
 			var ctx2 = document.getElementById("cityNB");
 
