@@ -64,6 +64,12 @@ function getInfo1() {
 			});
 			console.log(labelCount1, data1Count1, data2Count1);
 			
+			// (() => {
+			// 	data1.datasets[0].data = data1Count1;
+			// 	data1.datasets[1].data = data2Count1;
+			// 	data1.update();
+			// })();
+
 			var ctx1 = document.getElementById("stiNB");
 			const data1 = {
 				labels: labelCount1,
@@ -116,7 +122,7 @@ function getInfo1() {
 					}
 				}
 			}
-			const stiNB = new Chart(ctx1, config1);		
+			const stiNB = new Chart(ctx1, config1);	
 		});
 	});
 }
@@ -130,110 +136,67 @@ function getInfo2() {
 			// console.log(resp2);
 
 			let labelCount2 = [];
-			let data1Count2 = [];
-			// let data2Count2 = [];
+
+			let total1 = [];	let total2 = [];	let total3 = [];	let total4 = [];	let total5 = [];
+			let total6 = [];	let total7 = []; let total8 = [];	let total9 = [];
 
 			resp2.map((item) => {
 				let newItem2 = { 
-					x: item["staCode"]
+					x: item["staCode"],
+					y: item["gateInComingCnt"] + item["gateOutGoingCnt"]
 				}
 				// console.log(typeof(newItem2));
 
 				if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
+					total1.push(newItem2.y);
 					labelCount2.push("西部幹線-北");
 				} else if ( newItem2.x >= 2110 && newItem2.x <= 2260 ) {
+					total2.push(newItem2.y)
 					labelCount2.push("西部幹線-海");
 				} else if ( newItem2.x >= 3140 && newItem2.x <= 3350 ) {
+					total3.push(newItem2.y)
 					labelCount2.push("西部幹線-山");
 				} else if ( newItem2.x >= 3360 && newItem2.x <= 4100 ) {
+					total4.push(newItem2.y)
 					labelCount2.push("西部幹線-彰雲嘉");
 				} else if ( newItem2.x >= 4110 && newItem2.x <= 5110 ) {
+					total5.push(newItem2.y)
 					labelCount2.push("西部幹線-台南高屏");
 				} else if ( newItem2.x >= 5120 && newItem2.x <= 5240 ) {
+					total6.push(newItem2.y)
 					labelCount2.push("南迴線");
 				} else if ( newItem2.x >= 6000 && newItem2.x <= 6070 ) {
+					total7.push(newItem2.y)
 					labelCount2.push("東部幹線-台東");
 				} else if ( newItem2.x >= 6080 && newItem2.x <= 7080 ) {
+					total8.push(newItem2.y)
 					labelCount2.push("東部幹線-花蓮");
 				} else if ( newItem2.x >= 7090 && newItem2.x <= 7360 ) {
+					total9.push(newItem2.y)
 					labelCount2.push("其他");
 				}
 			});
 
-			resp2.map((item) => {
-				let newItem2 = {
-					x: item["staCode"],
-					y: item["gateInComingCnt"] + item["gateOutGoingCnt"]
-				}
+			let data1Count2 = [];
 
-				function SumDatareduce(arr){
-					return arr.reduce((a,b)=>a+b);  
-				}
+			function sumData(arr) {
+				let sum = 0;
+				arr.forEach(function(e) {
+					sum += e
+				});
+				return sum;
+			}
 
-				if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
-					console.log(SumDatareduce(newItem2.y));
-				} else if ( newItem2.x >= 2110 && newItem2.x <= 2260 ) {
-					
-				} else if ( newItem2.x >= 3140 && newItem2.x <= 3350 ) {
-					
-				} else if ( newItem2.x >= 3360 && newItem2.x <= 4100 ) {
-					
-				} else if ( newItem2.x >= 4110 && newItem2.x <= 5110 ) {
-					
-				} else if ( newItem2.x >= 5120 && newItem2.x <= 5240 ) {
-					
-				} else if ( newItem2.x >= 6000 && newItem2.x <= 6070 ) {
-					
-				} else if ( newItem2.x >= 6080 && newItem2.x <= 7080 ) {
-					
-				} else if ( newItem2.x >= 7090 && newItem2.x <= 7360 ) {
-					
-				}
+			data1Count2.push(
+				sumData(total1), sumData(total2), sumData(total3),
+				sumData(total4), sumData(total5), sumData(total6),
+				sumData(total7), sumData(total8), sumData(total9)
+			);
 
-				// function SumDatareduce(arr){
-				// 	return arr.reduce((a,b)=>a+b);  
-				// }
-
-				data1Count2.push(newItem2.y);
-			});
-			
 			console.log(data1Count2);
 
-			// function sumData2() {
-			// 	for(let i=0 ; i<data1Count2.length ; i++){
-			// 		let sum = 0 + data1Count2[i]
-			// 		console.log(sum);
-			// 		return sum;
-			// 	}
-			// }
-
-			// if ( data2Count2 >= 900 && data2Count2 <= 1250 ) {
-			// 	for(let i=0 ; i<data1Count2.length ; i++){
-			// 		let sum = 0 + data1Count2[i]
-			// 		console.log(sum);
-			// 		return sum;
-			// 	}
-			// } else if ( data2Count2 >= 2110 && data2Count2 <= 2260 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 3140 && data2Count2 <= 3350 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 3360 && data2Count2 <= 4100 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 4110 && data2Count2 <= 5110 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 5120 && data2Count2 <= 5240 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 6000 && data2Count2 <= 6070 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 6080 && data2Count2 <= 7080 ) {
-			// 	sumData2();
-			// } else if ( data2Count2 >= 7090 && data2Count2 <= 7360 ) {
-			// 	sumData2();
-			// }
-
 			const labelCount2_2 = [...new Set(labelCount2)];
-			
-			console.log(labelCount2_2);
+			// console.log(labelCount2_2);
 			
 			var ctx2 = document.getElementById("cityNB");
 
@@ -253,19 +216,21 @@ function getInfo2() {
 				labels: labelCount2_2,
 				datasets: [{
 					data: data1Count2,
-					backgroundColor: [
+					backgroundColor: 
+					[
 						"rgba(184, 216, 216, 1)", "rgba(122, 158, 159, 1)", "rgba(79, 99, 103, 1)",
 						"rgba(159, 172, 161, 1)", "rgba(199, 209, 190, 1)", "rgba(238, 245, 219, 1)",
 						"rgba(246, 170, 152, 1)", "rgba(250, 133, 119, 1)", "rgba(254, 95, 85, 1)"
 					],
-					borderWidth: 1
+					hoverOffset: 4
 				}],
 			}
 			const config2 = {
 				type: "doughnut",
 				data: data2,
 				options: {
-					hover: {mode: null}
+					// 搭配 隨機變色 colors 
+					// hover: {mode: null},
 				}
 			}
 			const cityNB = new Chart(ctx2, config2);		

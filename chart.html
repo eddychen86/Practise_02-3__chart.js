@@ -54,21 +54,7 @@
           </div>
           <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
         </div>
-        <div><canvas id="stiNB"></canvas></div>
-      </div>
-
-      <div id="chartTable" class="col-5 p-2 m-2 shadow p-3 bg-body">
-        <div id="subtitle" class="m-1 text-center">
-          <h3 class="fw-bolder">單日各行政區進出人數加總比例</h3>
-          <div class="d-flex flex-row align-items-center justify-content-center">
-            <select id="staDateE2" class="m-1 p-1 border border-info rounded-3">
-              <option value="" selected>選擇</option>
-            </select>
-            <i class="searchBtn btn btn-primary p-2 ms-2 fa-solid fa-magnifying-glass" onclick="getInfo2(this)"></i>
-          </div>
-          <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
-        </div>
-        <div><canvas id="cityNB"></canvas></div>  
+        <div id="chartRemove1"><canvas id="stiNB"></canvas></div>
       </div>
 
       <div id="chartTable" class="col-5 p-2 m-2 shadow p-3 bg-body">
@@ -88,7 +74,21 @@
           </div>
           <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
         </div>
-        <div><canvas id="allCityAR"></canvas></div>
+        <div id="chartRemove3"><canvas id="allCityAR"></canvas></div>
+      </div>
+
+      <div id="chartTable" class="col-5 p-2 m-2 shadow p-3 bg-body">
+        <div id="subtitle" class="m-1 text-center">
+          <h3 class="fw-bolder">單日各行政區進出人數加總比例</h3>
+          <div class="d-flex flex-row align-items-center justify-content-center">
+            <select id="staDateE2" class="m-1 p-1 border border-info rounded-3">
+              <option value="" selected>選擇</option>
+            </select>
+            <i class="searchBtn btn btn-primary p-2 ms-2 fa-solid fa-magnifying-glass" onclick="getInfo2(this)"></i>
+          </div>
+          <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
+        </div>
+        <div id="chartRemove2"><canvas id="cityNB"></canvas></div>  
       </div>
 
       <div id="chartTable" class="col-5 p-2 m-2 shadow p-3 bg-body">
@@ -108,7 +108,7 @@
           </div>
           <p class="text-center text-danger">※ 需要刷新網頁才能顯示選擇新的數據 ※</p>
         </div>
-        <div><canvas id="allCityNB"></canvas></div>
+        <div id="chartRemove4"><canvas id="allCityNB"></canvas></div>
       </div>
     </div>
 
