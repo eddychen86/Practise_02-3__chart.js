@@ -176,7 +176,6 @@ function getInfo2() {
 				}
 			});
 
-<<<<<<< HEAD
 			let data1Count2 = [];
 
 			function sumData(arr) {
