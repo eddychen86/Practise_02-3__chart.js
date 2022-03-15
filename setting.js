@@ -130,7 +130,19 @@ function getInfo1() {
 			}
 			const myChart1 = new Chart(ctx1, config1);
 		});
+		
+		sta1.addEventListener("change", update1);
+		dateS1.addEventListener("change", update1);
+		dateE1.addEventListener("change", update1);
+		function update1() {
+			myChart1.data1.labels = sta1.split(",");
+			myChart1.data1.datasets[0].data = dateS1.split(",");
+			myChart1.data1.datasets[1].data = dateE1.split(",");
+			myChart1.update();
+		}
 	});
+
+
 }
 
 function getInfo2() {
