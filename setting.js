@@ -2,7 +2,7 @@
 axios
 	.get("./staName.json")
 	.then(function(res){
-		var datas = res.data
+		const datas = res.data
 		$(function(){
 			datas.map(function(data){
 				$("#staName1").append('<option value="' + data.staName + '">' + data.staName + '</option>');
@@ -17,7 +17,7 @@ axios
 axios
 	.get("./date.json")
 	.then(function(res){
-		var datas = res.data
+		const datas = res.data
 		$(function(){
 			datas.map(function(data){
 				$("#staDateS1").append('<option value="' + data.trnOpDate + '">' + data.trnOpDate + '</option>');
@@ -39,30 +39,13 @@ axios
 axios
 	.get("./trLine.json")
 	.then(function(res){
-		var datas = res.data
+		const datas = res.data
 		$(function(){
 			datas.map(function(data){
 				$("#trLine2").append('<option value="' + data.trLine + '">' + data.trLine + '</option>');
 			});
 		});
 	});
-
-// // 更新 data
-// function addData(chart, label, data) {
-// 	chart.data.labels.push(label);
-// 	chart.data.datasets.forEach((dataset) => {
-// 		dataset.data.push(data);
-// 	});
-// 	chart.update();
-// }
-
-// function removeData(chart) {
-// 	chart.data.labels.pop();
-// 	chart.data.datasets.forEach((dataset) => {
-// 		dataset.data.pop();
-// 	});
-// }
-// 	chart.update();
 
 // 篩選程序 API
 function getInfo1() {
@@ -72,15 +55,15 @@ function getInfo1() {
 		const dateE1 = $("#staDateE1").val();
 		axios.get(`https://taiwan-railway.herokuapp.com/${sta1}/${dateS1}/${dateE1}`).then((response) => {
 			resolve(response.data);
-			let resp1 = response.data;
+			const resp1 = response.data;
 			// console.log(resp);
 
-			let labelCount1 = [];
-			let data1Count1 = [];
-			let data2Count1 = [];
+			const labelCount1 = [];
+			const data1Count1 = [];
+			const data2Count1 = [];
 
 			resp1.map((item1) => {
-				let newItem1 = { 
+				const newItem1 = { 
 					x: item1["trnOpDate"],
 					y1: item1["gateInComingCnt"],
 					y2: item1["gateOutGoingCnt"]
@@ -93,7 +76,7 @@ function getInfo1() {
 			});
 			// console.log(labelCount1, data1Count1, data2Count1);
 			
-			var ctx1 = document.getElementById("myChart1");
+			const ctx1 = document.getElementById("myChart1");
 			const data1 = {
 				labels: labelCount1,
 				datasets: [{
@@ -153,46 +136,46 @@ function getInfo1() {
 function getInfo2() {
 	return new Promise((resolve) => {
 		const trLine2 = $("#trLine2").val();
-		if ( trLine2 === "西部幹線-北" ) {
-			return 
-		} else 
-		if ( trLine2 === "西部幹線-海" ) {
+		// if ( trLine2 === "西部幹線-北" ) {
+		// 	return 
+		// } else 
+		// if ( trLine2 === "西部幹線-海" ) {
 
-		} else 
-		if ( trLine2 === "西部幹線-山" ) {
+		// } else 
+		// if ( trLine2 === "西部幹線-山" ) {
 
-		} else 
-		if ( trLine2 === "西部幹線-彰雲嘉" ) {
+		// } else 
+		// if ( trLine2 === "西部幹線-彰雲嘉" ) {
 
-		} else 
-		if ( trLine2 === "西部幹線-台南高屏" ) {
+		// } else 
+		// if ( trLine2 === "西部幹線-台南高屏" ) {
 
-		} else 
-		if ( trLine2 === "南迴線" ) {
+		// } else 
+		// if ( trLine2 === "南迴線" ) {
 
-		} else 
-		if ( trLine2 === "東部幹線-台東" ) {
+		// } else 
+		// if ( trLine2 === "東部幹線-台東" ) {
 
-		} else 
-		if ( trLine2 === "東部幹線-花蓮" ) {
+		// } else 
+		// if ( trLine2 === "東部幹線-花蓮" ) {
 
-		} else 
-		if ( trLine2 === "東部幹線-宜蘭&宜蘭縣" ) {
+		// } else 
+		// if ( trLine2 === "東部幹線-宜蘭&宜蘭縣" ) {
 
-		} else 
-		if ( trLine2 === "其他" ) {
+		// } else 
+		// if ( trLine2 === "其他" ) {
 
-		}
+		// }
 		const dateS2 = $("#staDateS2").val();
 		const dateE2 = $("#staDateE2").val();
 		axios.get(`https://taiwan-railway.herokuapp.com/八堵/920/${dateS2}/${dateE2}`).then((response) => {
 			resolve(response.data);
-			let resp2 = response.data;
+			const resp2 = response.data;
 			// console.log(resp);
 
-			let labelCount2 = [];
-			let data1Count2 = [];
-			let data2Count2 = [];
+			const labelCount2 = [];
+			const data1Count2 = [];
+			const data2Count2 = [];
 
 			resp2.map((item2) => {
 				let newItem2 = { 
@@ -208,7 +191,7 @@ function getInfo2() {
 			});
 			// console.log(labelCount1, data1Count1, data2Count1);
 			
-			var ctx2 = document.getElementById("myChart2");
+			const ctx2 = document.getElementById("myChart2");
 			const data2 = {
 				labels: labelCount2,
 				datasets: [{
@@ -228,8 +211,8 @@ function getInfo2() {
 				}]
 			}
 			const config2 = {
-				type: "polarArea",
-				data: data3
+				type: "line",
+				data: data2
 			}
 			const myChart2 = new Chart(ctx2, config2);
 		});
@@ -242,13 +225,13 @@ function getInfo3() {
 		const dateS3 = $("#staDateS3").val();
 		axios.get(`https://taiwan-railway.herokuapp.com/${sta3}/${dateS3}`).then((response) => {
 			resolve(response.data);
-			let resp3 = response.data;
+			const resp3 = response.data;
 
-			let labelCount3 = [];
-			let data1Count3 = [];			
+			const labelCount3 = [];
+			const data1Count3 = [];			
 
 			resp3.map((item3) => {
-				let newItem3 = { 
+				const newItem3 = { 
 					x: item3["trnOpDate"],
 					y1: item3["gateInComingCnt"],
 					y2: item3["gateOutGoingCnt"]
@@ -259,7 +242,7 @@ function getInfo3() {
 			});
 			console.log(data1Count3);
 			
-			var ctx3 = document.getElementById("myChart3");
+			const ctx3 = document.getElementById("myChart3");
 			const data3 = {
 				labels: ["進站人數", "出站人數"],
 				datasets: [{
@@ -290,16 +273,16 @@ function getInfo4() {
 		const date4 = $("#staDateE4").val();
 		axios.get(`https://taiwan-railway.herokuapp.com/date/${date4}`).then((response) => {
 			resolve(response.data);
-			let resp4 = response.data;
+			const resp4 = response.data;
 			// console.log(resp2);
 
-			let labelCount4 = [];
+			const labelCount4 = [];
 
-			let total1 = [];	let total2 = [];	let total3 = [];	let total4 = [];	let total5 = [];
-			let total6 = [];	let total7 = []; let total8 = [];	let total9 = []; let total10 = [];
+			const total1 = [];	const total2 = [];	const total3 = [];	const total4 = [];	const total5 = [];
+			const total6 = [];	const total7 = []; const total8 = [];	const total9 = []; const total10 = [];
 
 			resp4.map((item) => {
-				let newItem4 = { 
+				const newItem4 = { 
 					x: item["staCode"],
 					y: item["gateInComingCnt"] + item["gateOutGoingCnt"]
 				}
@@ -338,7 +321,7 @@ function getInfo4() {
 				}
 			});
 
-			let data1Count4 = [];
+			const data1Count4 = [];
 
 			function sumData(arr) {
 				let sum = 0;
@@ -360,7 +343,7 @@ function getInfo4() {
 			const labelCount4_2 = [...new Set(labelCount4)];
 			// console.log(labelCount2_2);
 			
-			var ctx4 = document.getElementById("myChart4");
+			const ctx4 = document.getElementById("myChart4");
 
 			// function getRandomColor() {
 			// 	let letters = '0123456789ABCDEF'.split('');
