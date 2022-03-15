@@ -147,40 +147,10 @@ function getInfo1() {
 
 function getInfo2() {
 	return new Promise((resolve) => {
-		const trLine2 = $("#trLine2").val();
-		// if ( trLine2 === "西部幹線-北" ) {
-		// 	return 
-		// } else 
-		// if ( trLine2 === "西部幹線-海" ) {
-
-		// } else 
-		// if ( trLine2 === "西部幹線-山" ) {
-
-		// } else 
-		// if ( trLine2 === "西部幹線-彰雲嘉" ) {
-
-		// } else 
-		// if ( trLine2 === "西部幹線-台南高屏" ) {
-
-		// } else 
-		// if ( trLine2 === "南迴線" ) {
-
-		// } else 
-		// if ( trLine2 === "東部幹線-台東" ) {
-
-		// } else 
-		// if ( trLine2 === "東部幹線-花蓮" ) {
-
-		// } else 
-		// if ( trLine2 === "東部幹線-宜蘭&宜蘭縣" ) {
-
-		// } else 
-		// if ( trLine2 === "其他" ) {
-
-		// }
+		const trLine = $("#trLine2").val();
 		const dateS2 = $("#staDateS2").val();
 		const dateE2 = $("#staDateE2").val();
-		axios.get(`https://taiwan-railway.herokuapp.com/八堵/920/${dateS2}/${dateE2}`).then((response) => {
+		axios.get(`https://taiwan-railway.herokuapp.com/line/${trLine}/${dateS2}/${dateE2}`).then((response) => {
 			resolve(response.data);
 			const resp2 = response.data;
 			// console.log(resp);
@@ -207,18 +177,10 @@ function getInfo2() {
 			const data2 = {
 				labels: labelCount2,
 				datasets: [{
-					label: "進站人數",
 					data: data1Count2,
 					fill: true,
 					backgroundColor: "rgba(98, 54, 245, 0.2)",
 					borderColor: "rgba(98, 54, 245)",
-					tension: 0.1
-				},{
-					label: "出站人數",
-					data: data2Count2,
-					fill: true,
-					backgroundColor: "rgba(255, 89, 89, 0.2)",
-					borderColor: "rgba(255, 89, 89)",
 					tension: 0.1
 				}]
 			}
