@@ -145,7 +145,6 @@ function getInfo2() {
 					x: item["staCode"],
 					y: item["gateInComingCnt"] + item["gateOutGoingCnt"]
 				}
-				// console.log(typeof(newItem2));
 
 				if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
 					total1.push(newItem2.y);
@@ -177,6 +176,7 @@ function getInfo2() {
 				}
 			});
 
+<<<<<<< HEAD
 			let data1Count2 = [];
 
 			function sumData(arr) {
