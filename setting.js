@@ -141,8 +141,6 @@ function getInfo1() {
 		// 	myChart1.update();
 		// }
 	});
-
-
 }
 
 function getInfo2() {
