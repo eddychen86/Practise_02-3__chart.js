@@ -42,7 +42,7 @@ axios
 		const datas = res.data
 		$(function(){
 			datas.map(function(data){
-				$("#trLine2").append('<option value="' + data.trLine + '">' + data.trLine + '</option>');
+				$("#trLine2").append('<option value="' + data.Line + '">' + data.trLine + '</option>');
 			});
 		});
 	});
@@ -131,15 +131,15 @@ function getInfo1() {
 			const myChart1 = new Chart(ctx1, config1);
 		});
 		
-		sta1.addEventListener("change", update1);
-		dateS1.addEventListener("change", update1);
-		dateE1.addEventListener("change", update1);
-		function update1() {
-			myChart1.data1.labels = sta1.split(",");
-			myChart1.data1.datasets[0].data = dateS1.split(",");
-			myChart1.data1.datasets[1].data = dateE1.split(",");
-			myChart1.update();
-		}
+		// sta1.addEventListener("change", update1);
+		// dateS1.addEventListener("change", update1);
+		// dateE1.addEventListener("change", update1);
+		// function update1() {
+		// 	myChart1.data1.labels = sta1.split(",");
+		// 	myChart1.data1.datasets[0].data = dateS1.split(",");
+		// 	myChart1.data1.datasets[1].data = dateE1.split(",");
+		// 	myChart1.update();
+		// }
 	});
 
 
@@ -148,12 +148,13 @@ function getInfo1() {
 function getInfo2() {
 	return new Promise((resolve) => {
 		const trLine = $("#trLine2").val();
+		console.log(trLine);
 		const dateS2 = $("#staDateS2").val();
 		const dateE2 = $("#staDateE2").val();
 		axios.get(`https://taiwan-railway.herokuapp.com/line/${trLine}/${dateS2}/${dateE2}`).then((response) => {
 			resolve(response.data);
 			const resp2 = response.data;
-			// console.log(resp);
+			console.log(resp2);
 
 			const labelCount2 = [];
 			const data1Count2 = [];
