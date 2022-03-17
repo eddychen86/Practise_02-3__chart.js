@@ -169,14 +169,22 @@ function getInfo2() {
 			// const east_yilan_in = []; const east_yilan_out = []; const east_yilan_all = [];
 			// const other_in = []; const other_out = []; const other_all = [];
 
+			const date2 = [];
+			const gateIn = [];
+			const gateOut = [];
+
 			resp2.map((item2) => {
 				let newItem2 = { 
 					x: item2["trnOpDate"],
 					y1: item2["gateInTotal"],
 					y2: item2["gateOutTotal"]
 				}
-				console.log(newItem2);
+				// console.log(newItem2);
 				// console.log(newItem2.x);
+
+				date2.push(newItem2.x);
+				gateIn.push(newItem2.y1);
+				gateOut.push(newItem2.y2);
 
 				// if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
 				// 	west_north_in.push(newItem2.y1); west_north_out.push(newItem2.y2);
@@ -200,6 +208,7 @@ function getInfo2() {
 				// 	other_in.push(newItem2.y1); other_out.push(newItem2.y2);
 				// }
 			});
+			console.log(date2, gateIn, gateOut);
 			
 
 			// function sumData(arr) {
@@ -253,12 +262,20 @@ function getInfo2() {
 
 			const ctx2 = document.getElementById("myChart2");
 			const data2 = {
-				labels: ,
+				labels: date2,
 				datasets: [{
-					data: ,
+					label: "進站人數",
+					data: gateIn,
 					fill: true,
 					backgroundColor: "rgba(98, 54, 245, 0.2)",
 					borderColor: "rgba(98, 54, 245)",
+					tension: 0.1
+				},{
+					label: "出站人數",
+					data: gateOut,
+					fill: true,
+					backgroundColor: "rgba(255, 89, 89, 0.2)",
+					borderColor: "rgba(255, 89, 89)",
 					tension: 0.1
 				}]
 			}
