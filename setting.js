@@ -253,9 +253,9 @@ function getInfo2() {
 
 			const ctx2 = document.getElementById("myChart2");
 			const data2 = {
-				labels: labelCount2,
+				labels: ,
 				datasets: [{
-					data: data1Count2,
+					data: ,
 					fill: true,
 					backgroundColor: "rgba(98, 54, 245, 0.2)",
 					borderColor: "rgba(98, 54, 245)",
