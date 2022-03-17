@@ -155,8 +155,9 @@ function getInfo2() {
 			).then((response) => {
 			resolve(response.data);
 			const resp2 = response.data;
+			
 
-			// const date = [];
+			// { const date = [];
 
 			// const west_north_in = []; const west_north_out = []; const west_north_all = [];
 			// const west_ocean_in = []; const west_ocean_out = []; const west_ocean_all = [];
@@ -167,48 +168,49 @@ function getInfo2() {
 			// const east_taitung_in = []; const east_taitung_out = []; const east_taitung_all = [];
 			// const east_hualien_in = []; const east_hualien_out = []; const east_hualien_all = [];
 			// const east_yilan_in = []; const east_yilan_out = []; const east_yilan_all = [];
-			// const other_in = []; const other_out = []; const other_all = [];
+			// const other_in = []; const other_out = []; const other_all = []; }
 
-			const date2 = [];
-			const gateIn = [];
-			const gateOut = [];
+			// const date2 = resp2.;
+			const gateIn = resp2.gateInTotal;
+			const gateOut = resp2.gateOutTotal;
+			console.log(gateIn, gateOut);
 
-			resp2.map((item2) => {
-				let newItem2 = { 
-					x: item2["trnOpDate"],
-					y1: item2["gateInTotal"],
-					y2: item2["gateOutTotal"]
-				}
-				// console.log(newItem2);
-				// console.log(newItem2.x);
+			// resp2.map((item2) => {
+			// 	let newItem2 = { 
+			// 		x: item2["trnOpDate"],
+			// 		y1: item2["gateInTotal"],
+			// 		y2: item2["gateOutTotal"]
+			// 	}
+			// 	// console.log(newItem2);
+			// 	// console.log(newItem2.x);
 
-				date2.push(newItem2.x);
-				gateIn.push(newItem2.y1);
-				gateOut.push(newItem2.y2);
+			// 	date2.push(newItem2.x);
+			// 	gateIn.push(newItem2.y1);
+			// 	gateOut.push(newItem2.y2);
 
-				// if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
-				// 	west_north_in.push(newItem2.y1); west_north_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 2110 && newItem2.x <= 2260 ) {
-				// 	west_ocean_in.push(newItem2.y1); west_ocean_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 3140 && newItem2.x <= 3350 ) {
-				// 	west_mount_in.push(newItem2.y1); west_mount_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 3360 && newItem2.x <= 4100 ) {
-				// 	west_cyc_in.push(newItem2.y1); west_cyc_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 4110 && newItem2.x <= 5110 ) {
-				// 	west_tk_in.push(newItem2.y1); west_tk_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 5120 && newItem2.x <= 5240 ) {
-				// 	south_in.push(newItem2.y1); south_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 6000 && newItem2.x <= 6070 ) {
-				// 	east_taitung_in.push(newItem2.y1); east_taitung_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 6080 && newItem2.x <= 7080 ) {
-				// 	east_hualien_in.push(newItem2.y1); east_hualien_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 7090 && newItem2.x <= 7360 ) {
-				// 	east_yilan_in.push(newItem2.y1); east_yilan_out.push(newItem2.y2);
-				// } else if ( newItem2.x >= 7361 && newItem2.x <= 7390 ) {
-				// 	other_in.push(newItem2.y1); other_out.push(newItem2.y2);
-				// }
-			});
-			console.log(date2, gateIn, gateOut);
+			// 	// if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
+			// 	// 	west_north_in.push(newItem2.y1); west_north_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 2110 && newItem2.x <= 2260 ) {
+			// 	// 	west_ocean_in.push(newItem2.y1); west_ocean_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 3140 && newItem2.x <= 3350 ) {
+			// 	// 	west_mount_in.push(newItem2.y1); west_mount_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 3360 && newItem2.x <= 4100 ) {
+			// 	// 	west_cyc_in.push(newItem2.y1); west_cyc_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 4110 && newItem2.x <= 5110 ) {
+			// 	// 	west_tk_in.push(newItem2.y1); west_tk_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 5120 && newItem2.x <= 5240 ) {
+			// 	// 	south_in.push(newItem2.y1); south_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 6000 && newItem2.x <= 6070 ) {
+			// 	// 	east_taitung_in.push(newItem2.y1); east_taitung_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 6080 && newItem2.x <= 7080 ) {
+			// 	// 	east_hualien_in.push(newItem2.y1); east_hualien_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 7090 && newItem2.x <= 7360 ) {
+			// 	// 	east_yilan_in.push(newItem2.y1); east_yilan_out.push(newItem2.y2);
+			// 	// } else if ( newItem2.x >= 7361 && newItem2.x <= 7390 ) {
+			// 	// 	other_in.push(newItem2.y1); other_out.push(newItem2.y2);
+			// 	// }
+			// });
+			// console.log(date2, gateIn, gateOut);
 			
 
 			// function sumData(arr) {
@@ -262,16 +264,13 @@ function getInfo2() {
 
 			const ctx2 = document.getElementById("myChart2");
 			const data2 = {
-				labels: date2,
 				datasets: [{
-					label: "進站人數",
-					data: gateIn,
-					fill: true,
-					backgroundColor: "rgba(98, 54, 245, 0.2)",
-					borderColor: "rgba(98, 54, 245)",
+					label: "進站總人數",
+					data: [ gateIn, gateOut ],
+					backgroundColor: ["rgba(98, 54, 245)", ],
 					tension: 0.1
 				},{
-					label: "出站人數",
+					label: "出站總人數",
 					data: gateOut,
 					fill: true,
 					backgroundColor: "rgba(255, 89, 89, 0.2)",
@@ -280,62 +279,13 @@ function getInfo2() {
 				}]
 			}
 			const config2 = {
-				type: "line",
+				type: "bubble",
 				data: data2
 			}
 			const myChart2 = new Chart(ctx2, config2);
 		});
 	});
 }
-
-// function getInfo2() {
-// 	return new Promise((resolve) => {
-// 		const trLine = $("#trLine2").val();
-// 		console.log(trLine);
-// 		const dateS2 = $("#staDateS2").val();
-// 		const dateE2 = $("#staDateE2").val();
-// 		axios.get(`https://taiwan-railway.herokuapp.com/line/${trLine}/${dateS2}/${dateE2}`).then((response) => {
-// 			resolve(response.data);
-// 			const resp2 = response.data;
-// 			console.log(resp2);
-
-// 			const labelCount2 = [];
-// 			const data1Count2 = [];
-// 			const data2Count2 = [];
-
-// 			resp2.map((item2) => {
-// 				let newItem2 = { 
-// 					x: item2["trnOpDate"],
-// 					y1: item2["gateInComingCnt"],
-// 					y2: item2["gateOutGoingCnt"]
-// 				}
-// 				// console.log(newItem1["x"]);
-
-// 				labelCount2.push(newItem2.x);
-// 				data1Count2.push(newItem2.y1);
-// 				data2Count2.push(newItem2.y2);
-// 			});
-// 			// console.log(labelCount1, data1Count1, data2Count1);
-			
-			// const ctx2 = document.getElementById("myChart2");
-			// const data2 = {
-			// 	labels: labelCount2,
-			// 	datasets: [{
-			// 		data: data1Count2,
-			// 		fill: true,
-			// 		backgroundColor: "rgba(98, 54, 245, 0.2)",
-			// 		borderColor: "rgba(98, 54, 245)",
-			// 		tension: 0.1
-			// 	}]
-			// }
-			// const config2 = {
-			// 	type: "line",
-			// 	data: data2
-			// }
-			// const myChart2 = new Chart(ctx2, config2);
-// 		});
-// 	});
-// }
 
 function getInfo3() {
 	return new Promise((resolve) => {
