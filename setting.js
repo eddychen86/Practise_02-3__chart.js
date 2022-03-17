@@ -149,118 +149,13 @@ function getInfo2() {
 		const dateS2 = $("#staDateS2").val();
 		const dateE2 = $("#staDateE2").val();
 
-		axios.get(
-			// `https://taiwan-railway.herokuapp.com/八堵/910/${dateS2}/${dateE2}`
-			`https://taiwan-railway.herokuapp.com/line/${trLine2}/${dateS2}/${dateE2}`
-			).then((response) => {
+		axios.get(`https://taiwan-railway.herokuapp.com/line/${trLine2}/${dateS2}/${dateE2}`).then((response) => {
 			resolve(response.data);
 			const resp2 = response.data;
 			
-
-			// { const date = [];
-
-			// const west_north_in = []; const west_north_out = []; const west_north_all = [];
-			// const west_ocean_in = []; const west_ocean_out = []; const west_ocean_all = [];
-			// const west_mount_in = []; const west_mount_out = []; const west_mount_all = [];
-			// const west_cyc_in = []; const west_cyc_out = []; const west_cyc_all = [];
-			// const west_tk_in = []; const west_tk_out = []; const west_tk_all = [];
-			// const south_in = []; const south_out = []; const south_all = [];
-			// const east_taitung_in = []; const east_taitung_out = []; const east_taitung_all = [];
-			// const east_hualien_in = []; const east_hualien_out = []; const east_hualien_all = [];
-			// const east_yilan_in = []; const east_yilan_out = []; const east_yilan_all = [];
-			// const other_in = []; const other_out = []; const other_all = []; }
-
-			// const date2 = resp2.;
 			const gateIn = resp2.gateInTotal;
 			const gateOut = resp2.gateOutTotal;
 			console.log(gateIn, gateOut);
-
-			// resp2.map((item2) => {
-			// 	let newItem2 = { 
-			// 		x: item2["trnOpDate"],
-			// 		y1: item2["gateInTotal"],
-			// 		y2: item2["gateOutTotal"]
-			// 	}
-			// 	// console.log(newItem2);
-			// 	// console.log(newItem2.x);
-
-			// 	date2.push(newItem2.x);
-			// 	gateIn.push(newItem2.y1);
-			// 	gateOut.push(newItem2.y2);
-
-			// 	// if ( newItem2.x >= 900 && newItem2.x <= 1250 ) {
-			// 	// 	west_north_in.push(newItem2.y1); west_north_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 2110 && newItem2.x <= 2260 ) {
-			// 	// 	west_ocean_in.push(newItem2.y1); west_ocean_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 3140 && newItem2.x <= 3350 ) {
-			// 	// 	west_mount_in.push(newItem2.y1); west_mount_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 3360 && newItem2.x <= 4100 ) {
-			// 	// 	west_cyc_in.push(newItem2.y1); west_cyc_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 4110 && newItem2.x <= 5110 ) {
-			// 	// 	west_tk_in.push(newItem2.y1); west_tk_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 5120 && newItem2.x <= 5240 ) {
-			// 	// 	south_in.push(newItem2.y1); south_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 6000 && newItem2.x <= 6070 ) {
-			// 	// 	east_taitung_in.push(newItem2.y1); east_taitung_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 6080 && newItem2.x <= 7080 ) {
-			// 	// 	east_hualien_in.push(newItem2.y1); east_hualien_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 7090 && newItem2.x <= 7360 ) {
-			// 	// 	east_yilan_in.push(newItem2.y1); east_yilan_out.push(newItem2.y2);
-			// 	// } else if ( newItem2.x >= 7361 && newItem2.x <= 7390 ) {
-			// 	// 	other_in.push(newItem2.y1); other_out.push(newItem2.y2);
-			// 	// }
-			// });
-			// console.log(date2, gateIn, gateOut);
-			
-
-			// function sumData(arr) {
-			// 	let sum = 0;
-			// 	arr.forEach((e) => sum += e);
-			// 	return sum;
-			// }
-
-			// west_north_all.push("西部幹線-北", sumData(west_north_in), sumData(west_north_out));
-			// west_ocean_all.push("西部幹線-海", sumData(west_ocean_in), sumData(west_ocean_out));
-			// west_mount_all.push("西部幹線-山", sumData(west_mount_in), sumData(west_mount_out));
-			// west_cyc_all.push("西部幹線-彰雲嘉", sumData(west_cyc_in), sumData(west_cyc_out));
-			// west_tk_all.push("西部幹線-台南高屏", sumData(west_tk_in), sumData(west_tk_out));
-			// south_all.push("南迴線", sumData(south_in), sumData(south_out));
-			// east_taitung_all.push("東部幹線-台東", sumData(east_taitung_in), sumData(east_taitung_out));
-			// east_hualien_all.push("東部幹線-花蓮", sumData(east_hualien_in), sumData(east_hualien_out));
-			// east_yilan_all.push("東部幹線-宜蘭&宜蘭縣", sumData(east_yilan_in), sumData(east_yilan_out));
-			// other_all.push("其他", sumData(other_in), sumData(other_out));
-
-			// if ( trLine2 === "west-north" ) {
-			// 	console.log(west_north_all);
-			// 	return west_north_all
-			// } else if ( trLine2 === "west-ocean" ) {
-			// 	console.log(west_ocean_all);
-			// 	return west_ocean_all
-			// } else if ( trLine2 === "west-mount" ) {
-			// 	console.log(west_mount_all);
-			// 	return west_mount_all
-			// } else if ( trLine2 === "west-cyc" ) {
-			// 	console.log(west_cyc_all);
-			// 	return west_cyc_all
-			// } else if ( trLine2 === "west-tk" ) {
-			// 	console.log(west_tk_all);
-			// 	return west_tk_all
-			// } else if ( trLine2 === "south" ) {
-			// 	console.log(south_all);
-			// 	return south_all
-			// } else if ( trLine2 === "east-taitung" ) {
-			// 	console.log(east_taitung_all);
-			// 	return east_taitung_all
-			// } else if ( trLine2 === "east-hualien" ) {
-			// 	console.log(east_hualien_all);
-			// 	return east_hualien_all
-			// } else if ( trLine2 === "east-yilan" ) {
-			// 	console.log(east_yilan_all);
-			// 	return east_yilan_all
-			// } else if ( trLine2 === "other") {
-			// 	console.log(other_all);
-			// 	return other_all
-			// }
 
 			const ctx2 = document.getElementById("myChart2");
 			const data2 = {
