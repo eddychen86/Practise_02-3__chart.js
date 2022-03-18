@@ -56,8 +56,7 @@ function getInfo1() {
 		axios.get(`https://taiwan-railway.herokuapp.com/${sta1}/${dateS1}/${dateE1}`).then((response) => {
 			resolve(response.data);
 			const resp1 = response.data;
-			// console.log(resp);
-
+			
 			const labelCount1 = [];
 			const data1Count1 = [];
 			const data2Count1 = [];
@@ -72,74 +71,44 @@ function getInfo1() {
 
 				labelCount1.push(newItem1.x);
 				data1Count1.push(newItem1.y1);
-				data2Count1.push(newItem1.y2 * -1);
+				data2Count1.push(newItem1.y2);
 			});
 			// console.log(labelCount1, data1Count1, data2Count1);
-			
-			const ctx1 = document.getElementById("myChart1");
+
+			const ctx1 = $("#myChart1");
 			const data1 = {
 				labels: labelCount1,
 				datasets: [{
-					label: "進站人數",
+					label: "進站總人數",
 					data: data1Count1,
+					fill: true,
 					backgroundColor: "rgba(98, 54, 245, 0.2)",
-					borderColor: "rgba(98, 54, 245, 1)",
-					borderWidth: 1
+					borderColor: "rgba(98, 54, 245)",
+					tension: 0.1,
+					pointStyle: 'circle',
+					pointRadius: 3,
+					pointHoverRadius: 7
 				},{
-					label: "出站人數",
+					label: "出站總人數",
 					data: data2Count1,
+					fill: true,
 					backgroundColor: "rgba(255, 89, 89, 0.2)",
-					borderColor: "rgba(255, 89, 89, 1)",
-					borderWidth: 1
+					borderColor: "rgba(255, 89, 89)",
+					tension: 0.1,
+					pointStyle: 'circle',
+					pointRadius: 3,
+					pointHoverRadius: 7
 				}]
 			}
-			const tooltip1 = {
-				yAlign: "bottom",
-				titleAlign: "center",
-				callbacks: {
-					label: (context) => {
-						return `${context.dataset.label} ${Math.abs(context.raw)}`
-					}
-				}
-			};
 			const config1 = {
-				type: "bar",
+				type: "line",
 				data: data1,
 				options: {
-					// indexAxis: 'y',
-					// maintainAspectRatio: false,
-					scales: {
-						x: {
-							stacked: true
-						},
-						y: {
-							stacked: true,
-							beginAtZero: true,
-							ticks: {
-								callback: (value) => {
-									// console.log(Math.abs(value));
-									return Math.abs(value);
-								}
-							}
-						}
-					},
-					plugins: {
-						tooltip: tooltip1
-					}
+					maintainAspectRatio: false
 				}
 			}
 			const myChart1 = new Chart(ctx1, config1);
 		});
-		
-		// sta1.addEventListener("change", update1);
-		// dateS1.addEventListener("change", update1);
-		// dateE1.addEventListener("change", update1);
-		// function update1() {
-		// 	myChart1.data1.labels = sta1.split(",");
-		// 	myChart1.data1.datasets[0].data = dateS1.split(",");
-		// 	myChart1.data1.datasets[1].data = dateE1.split(",");
-		// 	myChart1.update();
-		// }
 	});
 }
 
@@ -148,34 +117,66 @@ function getInfo2() {
 		const trLine2 = $("#trLine2").val();
 		const dateS2 = $("#staDateS2").val();
 		const dateE2 = $("#staDateE2").val();
-
 		axios.get(`https://taiwan-railway.herokuapp.com/line/${trLine2}/${dateS2}/${dateE2}`).then((response) => {
 			resolve(response.data);
 			const resp2 = response.data;
-			
-			const gateIn = resp2.gateInTotal;
-			const gateOut = resp2.gateOutTotal;
+
+			const trline2 = [resp2.trnOpDate];
+			const gateIn = [resp2.gateInTotal];
+			const gateOut = [resp2.gateOutTotal * -1];
 			console.log(gateIn, gateOut);
 
-			const ctx2 = document.getElementById("myChart2");
+			const ctx2 = $("#myChart2");
 			const data2 = {
+				labels: trline2,
 				datasets: [{
 					label: "進站總人數",
-					data: [ gateIn, gateOut ],
-					backgroundColor: ["rgba(98, 54, 245)", ],
-					tension: 0.1
+					data: gateIn,
+					backgroundColor: "rgba(98, 54, 245, 0.2)",
+					borderColor: "rgba(98, 54, 245, 1)",
+					borderWidth: 1
 				},{
 					label: "出站總人數",
 					data: gateOut,
-					fill: true,
 					backgroundColor: "rgba(255, 89, 89, 0.2)",
-					borderColor: "rgba(255, 89, 89)",
-					tension: 0.1
+					borderColor: "rgba(255, 89, 89, 1)",
+					borderWidth: 1
 				}]
 			}
+			const tooltip2 = {
+				yAlign: "bottom",
+				titleAlign: "center",
+				callbacks: {
+					label: (context) => {
+						return `${context.dataset.label} ${Math.abs(context.raw)}`
+					}
+				}
+			};
 			const config2 = {
-				type: "bubble",
-				data: data2
+				type: "bar",
+				data: data2,
+				options: {
+					indexAxis: 'y',
+					// maintainAspectRatio: false,
+					scales: {
+						x: {
+							stacked: true,
+							beginAtZero: true,
+							ticks: {
+								callback: (value) => {
+									// console.log(Math.abs(value));
+									return Math.abs(value);
+								}
+							}
+						},
+						y: {
+							stacked: true,
+						}
+					},
+					plugins: {
+						tooltip: tooltip2
+					}
+				}
 			}
 			const myChart2 = new Chart(ctx2, config2);
 		});
